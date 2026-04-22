@@ -39,13 +39,13 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             export GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}
-            kubectl create secret generic gemini-secret --from-literal=API_KEY=$GOOGLE_API_KEY --dry-run=client -o yaml | kubectl apply -f -
+            sudo kubectl create secret generic gemini-secret --from-literal=API_KEY=$GOOGLE_API_KEY --dry-run=client -o yaml | kubectl apply -f -
             # Set the KUBECONFIG path for K3s
             export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
             
             # Update the deployment to use the new image version
             # This triggers a rolling update in K3s
-            kubectl set image deployment/manufacturing-app streamlit-app=${{ secrets.DOCKERHUB_USERNAME }}/devops_app:${{ github.sha }}
+            sudo kubectl set image deployment/manufacturing-app streamlit-app=${{ secrets.DOCKERHUB_USERNAME }}/devops_app:${{ github.sha }}
             
             # Check the status of the rollout
-            kubectl rollout status deployment/manufacturing-app
+            sudo kubectl rollout status deployment/manufacturing-app
