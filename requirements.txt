@@ -1,0 +1,10 @@
+crewai
+langchain-google-genai
+ddgs
+python-dotenv
+pandas
+openpyxl
+xlrd
+streamlit
+chromadb
+sentence-transformers
