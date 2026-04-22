@@ -45,7 +45,7 @@ jobs:
             
             # Update the deployment to use the new image version
             # This triggers a rolling update in K3s
-            kubectl set image deployment/manufacturing-app flask-app=${{ secrets.DOCKERHUB_USERNAME }}/devops_app:${{ github.sha }}
+            kubectl set image deployment/manufacturing-app streamlit-app=${{ secrets.DOCKERHUB_USERNAME }}/devops_app:${{ github.sha }}
             
             # Check the status of the rollout
             kubectl rollout status deployment/manufacturing-app
