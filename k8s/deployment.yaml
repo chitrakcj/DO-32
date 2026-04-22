@@ -24,7 +24,7 @@ spec:
         image: chitrakjiyal/devops_app:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+        - containerPort: 8501
         # Resource constraints to protect your Free Tier EC2
         resources:
           requests:
