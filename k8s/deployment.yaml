@@ -20,6 +20,23 @@ spec:
         app: manufacturing
     spec:
       containers:
+      - name: streamlit-app
+        image: chitrakjiyal/devops_app:latest
+        ports:
+        - containerPort: 8501
+        # PASTE THE BLOCK BELOW:
+        env:
+        - name: GOOGLE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: gemini-secret
+              key: API_KEY
+  template:
+    metadata:
+      labels:
+        app: manufacturing
+    spec:
+      containers:
       - name: flask-app
         image: chitrakjiyal/devops_app:latest
         imagePullPolicy: Always
